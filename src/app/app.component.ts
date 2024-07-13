@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet,RouterLinkActive } from '@angular/router';
 import { SideMenuBarComponent } from "./core/components/side-menu-bar/side-menu-bar.component";
-
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
+import {MatCardModule} from '@angular/material/card';
+import { LoginComponent } from './core/components/login/login.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, SideMenuBarComponent],
+  imports: [RouterOutlet, SideMenuBarComponent, RouterLink, RouterLinkActive,MatDividerModule,MatListModule,MatCardModule,LoginComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

@@ -1,18 +1,32 @@
 <mat-drawer-container class="example-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side">
-    @if (showFiller) {
-      <p>Lorem, ipsum dolor sit amet consectetur.</p>
-    }
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
-    </button>
+    <ul class="ul">
+      @for (menu of menus; track $index) {
+        <li class="li">
+          <button class="button" (click)="navigate(menu)"><p class="p">{{menu}}</p></button>
+        </li>
+      }
+    </ul>
   </mat-drawer>
 
   <div class="sidenav-content">
-    <button id="menu-button" type="button" mat-button (click)="drawer.toggle()">
-      <i class="material-icons">menu</i>
-    </button>
-    <img src="assets/ralfitCrop.png" alt="Logo" style="align-self: flex-start;margin: 0 auto;">
+    <div class="sidenav-row">
+      <button id="menu-button" type="button" mat-button (click)="drawer.toggle()">
+        <i class="material-icons">menu</i>
+      </button>
+      <ng-content></ng-content>
+      <div>Hola<span
+        style="cursor: pointer;font-size:2.5rem;padding: 1rem;color: white;"
+        class="material-icons"
+        (click)="navigate('user')" >
+          account_circle
+        </span></div>
+    </div>
+  <div>
+    <ng-content select="[noFlex]"></ng-content>
   </div>
+  </div>
+
+
 
 </mat-drawer-container>
