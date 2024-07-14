@@ -1,0 +1,26 @@
+.container {
+  display: grid;
+  gap: 2rem;
+}
+
+.content {
+  display: flex;
+}
+
+.logo {
+  align-self: flex-start;
+  margin: 2rem auto;
+  transition: all .2s ease-in-out;
+}
+
+.logo:hover {
+  transform: scale(1.2);
+}
+
+.neon {
+  background: #1D1E27;
+  border-radius: 2rem;
+  color: gainsboro;
+  box-shadow: 0 0 25px 0 rgb(255, 255, 255), 0 0 200px 0 rgba(0, 0, 0, 0.19);
+  border: 1px solid;
+}
