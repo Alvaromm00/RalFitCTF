@@ -28,17 +28,15 @@
 #menu-button {
   padding: 2rem;
   color: azure;
+  transition: all .2s ease-in-out;
 }
 
 #menu-button:hover {
   color: orange;
-  animation-name: bg-transition;
-  animation-duration: 1s;
 }
 
-@keyframes bg-transition {
-  0%   {background-color: $primary-dark-color;}
-  100%  {background-color: orange;}
+.material-icons {
+  transition: all .2s ease-in-out;
 }
 
 .material-icons:hover {
@@ -50,10 +48,14 @@
   height: fit-content;
   background-color: transparent;
   list-style: none;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
-.li {
-  margin-bottom: 0px;
-}
+// .li {
+//   margin-bottom: 0px;
+// }
 .button {
   background-color: transparent;
   font-family: sans-serif;
@@ -114,4 +116,8 @@
 
 .logo:hover {
   transform: scale(1.2);
+}
+
+.li:last-child {
+  margin-top: auto;
 }

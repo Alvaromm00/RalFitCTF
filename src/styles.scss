@@ -1,6 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
 
 $primary-dark-color: #2a2b38;
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: antiquewhite}
+.mat-drawer-inner-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Asegúrate de que el contenedor tenga una altura definida */
+  }

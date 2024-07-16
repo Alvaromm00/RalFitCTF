@@ -3,13 +3,18 @@
     <ul class="ul">
       @for (menu of menus; track $index) {
         <li class="li">
-          <button class="button" (click)="navigate(menu)"><p class="p">{{menu}}</p></button>
+          <button class="button start" (click)="navigate(menu)"><p class="p">{{menu}}</p></button>
         </li>
       }
+
+        <li class="li">
+          <button class="button" (click)="navigate('login')"><p class="p">Iniciar sesión</p></button>
+        </li>
     </ul>
   </mat-drawer>
 
   <div class="sidenav-content">
+
     <div class="sidenav-row">
       <button id="menu-button" type="button" mat-button (click)="drawer.toggle()">
         <i class="material-icons">menu</i>
@@ -24,11 +29,7 @@
           account_circle
         </span></div>
     </div>
-  <div>
-    <ng-content select="[noFlex]"></ng-content>
+    
   </div>
-  </div>
-
-
 
 </mat-drawer-container>
