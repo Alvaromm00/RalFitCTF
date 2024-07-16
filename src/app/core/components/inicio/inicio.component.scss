@@ -18,9 +18,14 @@
 }
 
 .neon {
+  transition: all .2s ease-in-out;
   background: #1D1E27;
   border-radius: 2rem;
   color: gainsboro;
   box-shadow: 0 0 25px 0 rgb(255, 255, 255), 0 0 200px 0 rgba(0, 0, 0, 0.19);
   border: 1px solid;
+}
+
+.neon:hover {
+  box-shadow: 0 0 25px orange, 0 0 20px 0 orange;
 }
