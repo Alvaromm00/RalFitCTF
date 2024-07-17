@@ -1,35 +1,46 @@
 import { Component, AfterViewInit, ElementRef, ViewChild, Input } from '@angular/core';
-import EmblaCarousel, { EmblaOptionsType } from 'embla-carousel';
 import { ReviewInfo } from '../../model/ReviewInfo';
 import { ReviewCardComponent } from '../review-card/review-card.component';
 import { ReviewsService } from '../../services/reviews.service';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 @Component({
   selector: 'carousel',
   standalone: true,
-  imports: [ReviewCardComponent],
+  imports: [ReviewCardComponent,SlickCarouselModule],
   templateUrl: './carousel.component.html',
   styleUrl: './carousel.component.scss',
   providers: [ReviewsService]
 })
-export class CarouselComponent implements AfterViewInit{
+export class CarouselComponent{
 
-  @ViewChild('embla', { static: true }) embla!: ElementRef;
-  reviews: ReviewInfo[] = [];
+  slideConfig = {"slidesToShow": 4, "slidesToScroll": 2};
+
+  @Input() reviews!: ReviewInfo[];
 
   constructor(private reviewsService:ReviewsService) {}
 
   ngOnInit(): void {
-    this.reviewsService.getReviews().subscribe(
-      (data: ReviewInfo[]) => {
-        this.reviews = data;
-      });
-
+    console.log(this.reviews);
   }
-
-  ngAfterViewInit() {
-    const options: EmblaOptionsType = { slidesToScroll: 1, containScroll: "trimSnaps" };
-    const embla = EmblaCarousel(this.embla.nativeElement, options);
+  
+  removeSlide() {
+    this.reviews.length = this.reviews.length - 1;
   }
-
+  
+  slickInit() {
+    console.log('slick initialized');
+  }
+  
+  breakpoint() {
+    console.log('breakpoint');
+  }
+  
+  afterChange() {
+    console.log('afterChange');
+  }
+  
+  beforeChange() {
+    console.log('beforeChange');
+  }
 }

@@ -1,8 +1,5 @@
-import { Component, EventEmitter, Inject, Output, PLATFORM_ID } from '@angular/core';
-import { CarouselModule } from 'primeng/carousel';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ReviewCardComponent } from '../review-card/review-card.component';
-import { ButtonModule } from 'primeng/button';
-import { TagModule } from 'primeng/tag';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ReviewInfo } from '../../model/ReviewInfo';
 import { ReviewsService } from '../../services/reviews.service';
@@ -12,7 +9,7 @@ import { CarouselComponent } from '../carousel/carousel.component';
 @Component({
   selector: 'review-form',
   standalone: true,
-  imports: [CarouselModule,ReviewCardComponent,ButtonModule,TagModule,ReactiveFormsModule,CarouselComponent],
+  imports: [ReviewCardComponent,ReactiveFormsModule,CarouselComponent],
   templateUrl: './review-form.component.html',
   styleUrl: './review-form.component.scss',
   providers: [ReviewsService]
@@ -31,7 +28,7 @@ export class ReviewFormComponent {
     this.reviewForm = this.fb.group({
       title: ['', Validators.required],
       body: ['', Validators.required],
-      name: 'Alvaro'
+      user: 'Alvaro'
     });
   }
 
@@ -39,8 +36,7 @@ export class ReviewFormComponent {
 
     this.reviewsService.getReviews().subscribe(
       (data: ReviewInfo[]) => {
-        this.reviews.concat(data);
-        console.log(data.length);
+        this.reviews = data;
       },
       (error) => {
         console.error('Error fetching reviews', error);
@@ -53,7 +49,11 @@ export class ReviewFormComponent {
   onSubmit() {
     if (this.reviewForm.valid) {
       const reviewInfo: ReviewInfo = this.reviewForm.value;
-      console.log(reviewInfo);
+      this.reviewsService.saveReview(reviewInfo).subscribe(
+        () => {
+          location.reload()
+        }
+      ); 
       this.formSubmit.emit(reviewInfo);
     }
   }

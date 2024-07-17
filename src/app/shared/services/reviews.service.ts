@@ -14,6 +14,9 @@ export class ReviewsService {
     return this.http.get<ReviewInfo[]>('http://localhost:8080/api/v1/reviews');
   }
 
+  public saveReview(review: ReviewInfo): Observable<ReviewInfo> {
+    return this.http.post<ReviewInfo>('http://localhost:8080/api/v1/reviews', review);
+  }
 
 
 }

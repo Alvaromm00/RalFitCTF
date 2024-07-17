@@ -1,5 +1,5 @@
 export interface ReviewInfo { 
-    name:string;
+    user:string;
     title:string;
     body:string;
 }

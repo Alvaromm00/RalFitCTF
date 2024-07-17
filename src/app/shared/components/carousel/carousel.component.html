@@ -1,16 +1,15 @@
-<!-- <div class="embla" #embla>
-    <div class="embla__container">
-      @for (review of reviews; track $index) {
-        <review-card [info]="review"></review-card>
-      }
-    </div>
-  </div>
-   -->
 
-   <div class="embla" #embla>
-    <div class="embla__container">
-        @for (review of reviews; track $index) {
-            <review-card class="embla__slide" [info]="review"></review-card>
-        }
-    </div>
-  </div>
+<ngx-slick-carousel class="carousel" 
+                        #slickModal="slick-carousel" 
+                        [config]="slideConfig" 
+                        (init)="slickInit()"
+                        (breakpoint)="breakpoint()"
+                        (afterChange)="afterChange()"
+                        (beforeChange)="beforeChange()">
+    @for (review of reviews; track review) {
+        <div ngxSlickItem class="slide">
+                <review-card [info]="review" width="100%"></review-card>
+        </div>
+    }
+</ngx-slick-carousel>
+
