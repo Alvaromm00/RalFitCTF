@@ -1,0 +1,19 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { ReviewInfo } from '../model/ReviewInfo';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ReviewsService {
+
+  constructor(private http: HttpClient) { }
+
+  public getReviews(): Observable<ReviewInfo[]> {
+    return this.http.get<ReviewInfo[]>('http://localhost:8080/api/v1/reviews');
+  }
+
+
+
+}

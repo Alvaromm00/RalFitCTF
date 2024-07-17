@@ -1,0 +1,16 @@
+<!-- <div class="embla" #embla>
+    <div class="embla__container">
+      @for (review of reviews; track $index) {
+        <review-card [info]="review"></review-card>
+      }
+    </div>
+  </div>
+   -->
+
+   <div class="embla" #embla>
+    <div class="embla__container">
+        @for (review of reviews; track $index) {
+            <review-card class="embla__slide" [info]="review"></review-card>
+        }
+    </div>
+  </div>
