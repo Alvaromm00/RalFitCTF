@@ -1,11 +1,7 @@
 
 <ngx-slick-carousel class="carousel" 
                         #slickModal="slick-carousel" 
-                        [config]="slideConfig" 
-                        (init)="slickInit()"
-                        (breakpoint)="breakpoint()"
-                        (afterChange)="afterChange()"
-                        (beforeChange)="beforeChange()">
+                        [config]="slideConfig">
     @for (review of reviews; track review) {
         <div ngxSlickItem class="slide">
                 <review-card [info]="review" width="100%"></review-card>

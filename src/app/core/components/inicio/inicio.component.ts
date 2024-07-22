@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import { SideMenuBarComponent } from '../side-menu-bar/side-menu-bar.component';
+import { AuthService } from '../../../shared/services/auth.service';
 
 @Component({
   selector: 'app-inicio',
@@ -11,6 +12,6 @@ import { SideMenuBarComponent } from '../side-menu-bar/side-menu-bar.component';
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.scss'
 })
-export class InicioComponent {
+export class InicioComponent{
 
 }

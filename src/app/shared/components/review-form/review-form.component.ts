@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { ReviewCardComponent } from '../review-card/review-card.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ReviewInfo } from '../../model/ReviewInfo';
 import { ReviewsService } from '../../services/reviews.service';
 import { CarouselComponent } from '../carousel/carousel.component';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -21,10 +22,16 @@ export class ReviewFormComponent {
  @Output() formSubmit = new EventEmitter<ReviewInfo>();
   
  reviewForm: FormGroup;
+
+ authService = inject(AuthService)
+ isLogged:boolean = false;
  
   
 
   constructor(private fb: FormBuilder,private reviewsService:ReviewsService) {
+    this.authService.isLogged().subscribe(isLogged => {
+      this.isLogged = isLogged;
+    });
     this.reviewForm = this.fb.group({
       title: ['', Validators.required],
       body: ['', Validators.required],
@@ -33,6 +40,10 @@ export class ReviewFormComponent {
   }
 
   ngOnInit(): void {
+
+    this.authService.isLogged().subscribe(isLogged => {
+      this.isLogged = isLogged;
+    });
 
     this.reviewsService.getReviews().subscribe(
       (data: ReviewInfo[]) => {

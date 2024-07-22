@@ -11,11 +11,11 @@ export class ReviewsService {
   constructor(private http: HttpClient) { }
 
   public getReviews(): Observable<ReviewInfo[]> {
-    return this.http.get<ReviewInfo[]>('http://localhost:8080/api/v1/reviews');
+    return this.http.get<ReviewInfo[]>('http://localhost:8081/api/v1/reviews');
   }
 
   public saveReview(review: ReviewInfo): Observable<ReviewInfo> {
-    return this.http.post<ReviewInfo>('http://localhost:8080/api/v1/reviews', review);
+    return this.http.post<ReviewInfo>('http://localhost:8081/api/v1/reviews', review);
   }
 
 

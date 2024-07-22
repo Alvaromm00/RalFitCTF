@@ -23,24 +23,5 @@ export class CarouselComponent{
   ngOnInit(): void {
     console.log(this.reviews);
   }
-  
-  removeSlide() {
-    this.reviews.length = this.reviews.length - 1;
-  }
-  
-  slickInit() {
-    console.log('slick initialized');
-  }
-  
-  breakpoint() {
-    console.log('breakpoint');
-  }
-  
-  afterChange() {
-    console.log('afterChange');
-  }
-  
-  beforeChange() {
-    console.log('beforeChange');
-  }
+
 }

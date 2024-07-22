@@ -1,36 +1,25 @@
 <div class="container">
 
-    <div class="form-container">
-        <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-            <label for="email">Título</label>
-            <input id="title" formControlName="title">
+    @if (isLogged) {
+        <div class="form-container">
+            <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="email">Título</label>
+                <input id="title" formControlName="title">
+            </div>
+            <div class="form-group">
+                <label for="textarea">¿Qué opinas de la aplicación?</label>
+                <textarea id="body" formControlName="body"></textarea>
+            </div>
+            <button type="submit" class="form-submit-btn">Submit</button>
+            </form>
         </div>
-        <div class="form-group">
-            <label for="textarea">¿Qué opinas de la aplicación?</label>
-            <textarea id="body" formControlName="body"></textarea>
-        </div>
-        <button type="submit" class="form-submit-btn">Submit</button>
-        </form>
-    </div>
+    }
+    
 
     <div class="reviews-container">
         <carousel [reviews]="reviews"></carousel>
     </div>
-    <!-- 
-        
-    } -->
-        
-    <!-- <div>
-        <p-carousel 
-        [value]="reviews" 
-        [numVisible]="2" 
-        [numScroll]="3" 
-        [circular]="false">
-            <ng-template let-product pTemplate="item">
-                <review-card [info]="product"></review-card>
-            </ng-template>
-        </p-carousel>
-    </div> -->
+
 
 </div>

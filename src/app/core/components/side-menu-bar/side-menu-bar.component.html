@@ -6,10 +6,11 @@
           <button class="button start" (click)="navigate(menu)"><p class="p">{{menu}}</p></button>
         </li>
       }
-
-        <li class="li">
+      @if (!isLogged) {
+        <li class="li login">
           <button class="button" (click)="navigate('login')"><p class="p">Iniciar sesión</p></button>
         </li>
+      }   
     </ul>
   </mat-drawer>
 
@@ -19,15 +20,24 @@
       <button id="menu-button" type="button" mat-button (click)="drawer.toggle()">
         <i class="material-icons">menu</i>
       </button>
+      
       <ng-content></ng-content>
+
       <div style="display: flex;align-items: center;justify-content: center; color: white;">
-        <h3 style="margin: 0;" [innerHTML]="unsafeHtml"></h3>
-        <span
-        style="cursor: pointer;font-size:2.5rem;padding: 1rem"
-        class="material-icons"
-        (click)="navigate('user')" >
-          account_circle
-        </span></div>
+
+        @if (isLogged) {
+          
+            <h3 style="margin: 0;" [innerHTML]="unsafeHtml"></h3>
+            <span
+            style="cursor: pointer;font-size:2.5rem;padding: 1rem"
+            class="material-icons"
+            (click)="navigate('user')" >
+              account_circle
+            </span>
+        }
+
+      </div>
+      
     </div>
     
   </div>
