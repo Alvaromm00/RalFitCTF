@@ -6,6 +6,12 @@
           <button class="button start" (click)="navigate(menu)"><p class="p">{{menu}}</p></button>
         </li>
       }
+      @if (userRole === 'ADMIN') {
+        <li class="li">
+          <button class="button" (click)="navigate('admin')"><p class="p">Panel de administración</p></button>
+        </li>
+      }   
+
       @if (!isLogged) {
         <li class="li login">
           <button class="button" (click)="navigate('login')"><p class="p">Iniciar sesión</p></button>

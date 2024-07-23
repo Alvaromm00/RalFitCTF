@@ -20,12 +20,15 @@ export class SideMenuBarComponent {
   unsafeHtml: SafeHtml;  
   authService = inject(AuthService)
   isLogged:boolean = false;
+  userRole:string | null;
 
   constructor(private router: Router,protected sanitizer: DomSanitizer, authService:AuthService) {
     this.unsafeHtml = this.sanitizer.bypassSecurityTrustHtml('Hola ' + authService.getUserFromToken());
     this.authService.isLogged().subscribe(isLogged => {
       this.isLogged = isLogged;
     });
+    this.userRole = this.authService.getRoleFromToken();
+    
   }
 
   navigate(menu: string) {
