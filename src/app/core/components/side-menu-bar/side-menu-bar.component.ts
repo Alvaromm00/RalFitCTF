@@ -41,8 +41,13 @@ export class SideMenuBarComponent {
     this.authService.isLogged().subscribe(isLogged => {
       this.isLogged = isLogged;
     });
+  }
 
-    
+  logout(): void {
+    localStorage.clear()
+    this.router.navigate(['/']).then(() => {
+      window.location.reload();
+    });
   }
 
 }

@@ -17,6 +17,13 @@
           <button class="button" (click)="navigate('login')"><p class="p">Iniciar sesión</p></button>
         </li>
       }   
+
+      @if (isLogged) {
+        <li class="li login">
+          <button class="button" (click)="logout()"><p class="p">Cerrar sesión</p></button>
+        </li>
+      }   
+
     </ul>
   </mat-drawer>
 

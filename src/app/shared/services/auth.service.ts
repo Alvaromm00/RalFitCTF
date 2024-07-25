@@ -20,11 +20,11 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   public login(authRequest:AuthRequest): Observable<AuthResponseInfo> {
-    return this.http.post<AuthResponseInfo>('http://localhost:8080/login',authRequest);
+    return this.http.post<AuthResponseInfo>('http://localhost:1212/login',authRequest);
   }
 
   public register (authRequest:AuthRequest): Observable<AuthResponseInfo> {
-    return this.http.post<AuthResponseInfo>('http://localhost:8080/register',authRequest);
+    return this.http.post<AuthResponseInfo>('http://localhost:1212/register',authRequest);
   }
 
   public getToken(): string | null {

@@ -52,7 +52,7 @@ export class LoginComponent {
             this.loginForm.reset();
             this.router.navigate(['/']).then(() => {
               window.location.reload();
-            });;
+            });
           } else if (data.message){
             this.openAlertDialog(data.message);
           }
