@@ -1,4 +1,4 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, inject, Inject, Input } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialog,
@@ -8,6 +8,7 @@ import {
   MatDialogTitle,
 } from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -20,9 +21,12 @@ import {MatButtonModule} from '@angular/material/button';
 export class ErrorDialogComponent {
 
   descripcion : string;
+  userRole : string | null;
+  authService = inject(AuthService)
 
   constructor(@Inject(MAT_DIALOG_DATA) data: { message: string }) {
     this.descripcion = data.message;
+    this.userRole = this.authService.getRoleFromToken();
   }
   ngOnInit(): void {
   }

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { AuthResponseInfo } from '../model/AuthResponseInfo';
 import { Observable } from 'rxjs/internal/Observable';
@@ -17,14 +17,39 @@ export class AuthService {
   private isLocalStorageAvailable = typeof localStorage !== 'undefined';
   private isLoggedInSubject = new BehaviorSubject<boolean>(this.getToken() != null);
 
+  private urlBase: string = 'http://localhost:1212';
+
   constructor(private http: HttpClient) {}
 
   public login(authRequest:AuthRequest): Observable<AuthResponseInfo> {
-    return this.http.post<AuthResponseInfo>('http://localhost:1212/login',authRequest);
+    return this.http.post<AuthResponseInfo>(this.urlBase +'/login',authRequest);
   }
 
   public register (authRequest:AuthRequest): Observable<AuthResponseInfo> {
-    return this.http.post<AuthResponseInfo>('http://localhost:1212/register',authRequest);
+    return this.http.post<AuthResponseInfo>(this.urlBase +'/register',authRequest);
+  }
+
+  public getLogs(logPath:string): Observable<string[]> {
+
+    const token = this.getToken();
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.post<string[]>(this.urlBase + '/logs',logPath, { headers });
+  }
+
+  public getVersion(): Observable<string> {
+
+    const token = this.getToken();
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Ejemplo' : 'Mierda'
+    });
+
+    return this.http.get<string>(this.urlBase + '/version', { headers });
   }
 
   public getToken(): string | null {

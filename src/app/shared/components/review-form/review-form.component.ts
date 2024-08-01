@@ -16,7 +16,7 @@ import { AuthService } from '../../services/auth.service';
   providers: [ReviewsService]
 })
 export class ReviewFormComponent {
-
+  
  public reviews : ReviewInfo[] = [];
 
  @Output() formSubmit = new EventEmitter<ReviewInfo>();
@@ -35,7 +35,7 @@ export class ReviewFormComponent {
     this.reviewForm = this.fb.group({
       title: ['', Validators.required],
       body: ['', Validators.required],
-      user: 'Alvaro'
+      user: this.authService.getUserFromToken()
     });
   }
 

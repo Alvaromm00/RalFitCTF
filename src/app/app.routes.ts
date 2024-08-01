@@ -4,6 +4,7 @@ import { InicioComponent } from './core/components/inicio/inicio.component';
 import { ReviewFormComponent } from './shared/components/review-form/review-form.component';
 import { CarouselComponent } from './shared/components/carousel/carousel.component';
 import { authGuard } from './shared/guards/auth.guard';
+import { AdminComponent } from './core/components/admin/admin.component';
 
 export const routes: Routes = [
   { path: 'inicio', component: InicioComponent},
@@ -11,5 +12,6 @@ export const routes: Routes = [
   { path: 'user', component: LoginComponent, canActivate: [authGuard] },
   { path: 'opiniones', component: ReviewFormComponent},
   { path: 'carousel', component: CarouselComponent},
+  { path: 'admin', component: AdminComponent},
   { path: '', redirectTo: 'inicio', pathMatch: 'full' }
 ];

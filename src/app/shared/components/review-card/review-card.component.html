@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-info">
       <p class="text-title">{{info.title}}</p>
-      <p class="text-body">{{info.body}}</p>
+      <p class="text-body" [innerHTML]="unsafeHtml"></p>
     </div>
     <div class="card-footer">
     <p class="text-title">{{info.user}}</p>
@@ -9,5 +9,16 @@
       <span class="material-icons">
         done
         </span>
+
     </div>
+    <div class="card-button edit">
+
+      @if (userRole === 'ADMIN') {
+        <span class="material-icons" (click)="selectReview(info.id)">
+          edit
+          </span>
+      }
+
+    </div>
+
   </div></div>

@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>Review</h2>
+<mat-dialog-content>
+    <p>Cuerpo de la review</p>
+    <textarea [(ngModel)]="review.body"></textarea>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cerrar</button>
+  <button mat-button mat-dialog-accept (click)="modifyReview(review)">Guardar</button>
+</mat-dialog-actions>

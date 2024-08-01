@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ReviewInfo } from '../model/ReviewInfo';
 
@@ -16,6 +16,15 @@ export class ReviewsService {
 
   public saveReview(review: ReviewInfo): Observable<ReviewInfo> {
     return this.http.post<ReviewInfo>('http://localhost:8081/api/v1/reviews', review);
+  }
+
+  public updateReview(review: ReviewInfo): Observable<ReviewInfo> {
+    return this.http.post<ReviewInfo>('http://localhost:8081/api/v1/reviews/update', review);
+  }
+
+  public getReviewById(id:string):Observable<ReviewInfo> {
+    let params = new HttpParams().set("id",id);
+    return this.http.get<ReviewInfo>('http://localhost:8081/api/v1/reviews/detalle',{params: params});
   }
 
 
