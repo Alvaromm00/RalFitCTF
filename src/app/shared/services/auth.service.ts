@@ -1,11 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Inject, Injectable, signal, WritableSignal } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { AuthResponseInfo } from '../model/AuthResponseInfo';
 import { Observable } from 'rxjs/internal/Observable';
 import { AuthRequest } from '../model/AuthRequest';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { DOCUMENT } from '@angular/common';
-import { of } from 'rxjs/internal/observable/of';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 @Injectable({
