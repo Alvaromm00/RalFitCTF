@@ -20,10 +20,11 @@ RUN npm run build --prod
 FROM nginx:stable-alpine
 
 # Copia los archivos construidos al directorio de Nginx
-COPY --from=build /app/dist/your-angular-app /usr/share/nginx/html
+COPY --from=build /app/dist/ralfilt-frontend/browser /usr/share/nginx/html
+COPY ./nginx.conf /etc/nginx/nginx.conf
 
 # Exponer el puerto 80 para el servidor HTTP
 EXPOSE 80
 
 # Comando por defecto para ejecutar Nginx
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["/bin/sh", "-c", "envsubst < /usr/share/nginx/html/assets/env.template.js > /usr/share/nginx/html/assets/env.js && nginx -g 'daemon off;'"]

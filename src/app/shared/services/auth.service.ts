@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { AuthRequest } from '../model/AuthRequest';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { environment } from '../../../enviroments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,16 +16,17 @@ export class AuthService {
   private isLocalStorageAvailable = typeof localStorage !== 'undefined';
   private isLoggedInSubject = new BehaviorSubject<boolean>(this.getToken() != null);
 
-  private urlBase: string = 'http://localhost:1212';
+  private authServiceUrl = environment.authServiceUrl;
 
   constructor(private http: HttpClient) {}
 
   public login(authRequest:AuthRequest): Observable<AuthResponseInfo> {
-    return this.http.post<AuthResponseInfo>(this.urlBase +'/login',authRequest);
+    console.log(this.authServiceUrl);
+    return this.http.post<AuthResponseInfo>(this.authServiceUrl +'/login',authRequest);
   }
 
   public register (authRequest:AuthRequest): Observable<AuthResponseInfo> {
-    return this.http.post<AuthResponseInfo>(this.urlBase +'/register',authRequest);
+    return this.http.post<AuthResponseInfo>(this.authServiceUrl +'/register',authRequest);
   }
 
   public getLogs(logPath:string): Observable<string[]> {
@@ -35,7 +37,7 @@ export class AuthService {
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.post<string[]>(this.urlBase + '/logs',logPath, { headers });
+    return this.http.post<string[]>(this.authServiceUrl + '/logs',logPath, { headers });
   }
 
   public getVersion(): Observable<string> {
@@ -47,7 +49,7 @@ export class AuthService {
       'Ejemplo' : 'Mierda'
     });
 
-    return this.http.get<string>(this.urlBase + '/version', { headers });
+    return this.http.get<string>(this.authServiceUrl + '/version', { headers });
   }
 
   public getToken(): string | null {
