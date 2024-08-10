@@ -10,21 +10,23 @@ export class ReviewsService {
 
   constructor(private http: HttpClient) { }
 
+  private authServiceUrl = 'http://ralfit.ctf:8081';
+
   public getReviews(): Observable<ReviewInfo[]> {
-    return this.http.get<ReviewInfo[]>('http://localhost:8081/api/v1/reviews');
+    return this.http.get<ReviewInfo[]>(this.authServiceUrl + '/api/v1/reviews');
   }
 
   public saveReview(review: ReviewInfo): Observable<ReviewInfo> {
-    return this.http.post<ReviewInfo>('http://localhost:8081/api/v1/reviews', review);
+    return this.http.post<ReviewInfo>(this.authServiceUrl + '/api/v1/reviews', review);
   }
 
   public updateReview(review: ReviewInfo): Observable<ReviewInfo> {
-    return this.http.post<ReviewInfo>('http://localhost:8081/api/v1/reviews/update', review);
+    return this.http.post<ReviewInfo>(this.authServiceUrl + '/api/v1/reviews/update', review);
   }
 
   public getReviewById(id:string):Observable<ReviewInfo> {
     let params = new HttpParams().set("id",id);
-    return this.http.get<ReviewInfo>('http://localhost:8081/api/v1/reviews/detalle',{params: params});
+    return this.http.get<ReviewInfo>(this.authServiceUrl + '/api/v1/reviews/detalle',{params: params});
   }
 
 

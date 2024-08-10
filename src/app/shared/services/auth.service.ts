@@ -5,7 +5,6 @@ import { Observable } from 'rxjs/internal/Observable';
 import { AuthRequest } from '../model/AuthRequest';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-import { environment } from '../../../enviroments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +15,7 @@ export class AuthService {
   private isLocalStorageAvailable = typeof localStorage !== 'undefined';
   private isLoggedInSubject = new BehaviorSubject<boolean>(this.getToken() != null);
 
-  private authServiceUrl = environment.authServiceUrl;
+  private authServiceUrl = 'http://ralfit.ctf:8080';
 
   constructor(private http: HttpClient) {}
 

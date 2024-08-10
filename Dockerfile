@@ -21,7 +21,6 @@ FROM nginx:stable-alpine
 
 # Copia los archivos construidos al directorio de Nginx
 COPY --from=build /app/dist/ralfilt-frontend/browser /usr/share/nginx/html
-COPY ./nginx.conf /etc/nginx/nginx.conf
 
 # Exponer el puerto 80 para el servidor HTTP
 EXPOSE 80
